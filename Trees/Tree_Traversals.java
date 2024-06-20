@@ -46,16 +46,23 @@ public class Tree_Traversals {
 
 
     static class BinaryTree{
-        static int index=-1;
-        public static Node buildTree(int a[])
+         int index=-1;
+
+        public Node buildTree(int a[])
+        {
+            Node r= buildTreeHealper(a);
+            index=-1;
+            return r;
+        }
+        public  Node buildTreeHealper(int a[])
         {
             index++;
             if(a[index]==-1)
                 return  null;
             Node newNode=new Node(a[index]);
 
-            newNode.left=buildTree(a);
-            newNode.right=buildTree(a);
+            newNode.left=buildTreeHealper(a);
+            newNode.right=buildTreeHealper(a);
             return newNode;
         }
     }
@@ -64,15 +71,20 @@ public class Tree_Traversals {
 
     public static void main(String ar[])
     {
-        int a[]={15,2,1,-1,-1,3,-1,-1,13,-1,-1};
-       BinaryTree tree=new BinaryTree();
+        int a[]={4,2,1,-1,-1,3,-1,-1,2,1,-1,-1,1,-1,-1};
+        int s[]={2,1,-1,-1,3,-1,-1};
+        BinaryTree tree=new BinaryTree();
         Node root=tree.buildTree(a);
+        Node sub=tree.buildTree(s);
         Tree_Traversals t=new Tree_Traversals();
-        t.inorder(root);
         System.out.println();
         Tree_basic_ques tq=new Tree_basic_ques();
-       int h= tq.diameter1(root);
-        System.out.println("height "+h);
+        tq.levelOrder(root);
+        tq.levelOrder(sub);
+       String ss="12";
+       ss=ss+" "+null+" ";
+        System.out.println(ss);
+
     }
 
 }
